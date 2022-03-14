@@ -1,0 +1,14 @@
+{
+  "name": "invoke-ses-via-lambda",
+  "version": "1.0.0",
+  "description": "Invoke AWS Simple Email Service via AWS Lambda",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1092.0"
+  }
+}
