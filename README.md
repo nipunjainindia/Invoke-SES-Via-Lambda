@@ -17,5 +17,6 @@ SetUp
     ]
 }
 2. Attach the IAM policy to an IAM role.
-3. Create a Lambda function.
-4. Deploy Lambda.
+3. Create a Lambda function. Copy the contents of index.js and paste it in Lambda.
+4. Assign above created IAM role to Lambda.
+5. Deploy Lambda.
