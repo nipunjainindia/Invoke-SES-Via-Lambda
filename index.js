@@ -8,22 +8,36 @@ function getRecipients() {
     ];
 }
 
-exports.handler = async (event) => {
+function getEmailData() {
     const recipients = getRecipients();
     const recipientsEmails = recipients.map((recipient) => recipient.email);
+    const subject = "Keep on enjoying our latest content by paying just Rs 199";
+    const body = "Hi Nipun, Your payment is due on Mar 14th, 2022. Please make the payment to continue enjoying latest content. Regards, Team Tube";
+    const sourceEmail = "nipunjainindia@gmail.com";
+    
+    return {
+      recipients: recipientsEmails,
+      subject,
+      body,
+      sourceEmail
+    };
+}
+
+exports.handler = async (event) => {
+    const {recipients, subject, body, sourceEmail} = getEmailData();
     
     let params = {
     Destination: {
-      ToAddresses: recipientsEmails,
+      ToAddresses: recipients,
     },
     Message: {
       Body: {
-        Text: { Data: "Hi Nipun, Your payment is due on Mar 14th, 2022. Please make the payment to continue enjoying latest content. Regards, Team Tube" },
+        Text: { Data: body },
       },
 
-      Subject: { Data: "Keep on enjoying our latest content by paying just Rs 199" },
+      Subject: { Data: subject },
     },
-    Source: "nipunjainindia@gmail.com",
+    Source: sourceEmail,
   };
  
   return ses.sendEmail(params).promise();
